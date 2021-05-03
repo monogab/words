@@ -1,0 +1,26 @@
+MERGE (Moeder:Dutch {word:'Moeder'})
+MERGE (Anya:Hungarian {word:'Anya'})
+MERGE (Mother:English {word:'Mother'})
+
+CREATE (Moeder)-[:TRANSLATES]->(Anya)
+CREATE (Moeder)-[:TRANSLATES]->(Mother)
+
+//get all Dutch workds
+MATCH (word:Dutch) RETURN word
+
+//complete
+MERGE (Moeder:Dutch {word:'Mama' })
+
+CREATE (Moeder)-[:SYMOMYM]->(Anya)
+
+MATCH (tom {name: "Tom Hanks"}) RETURN tom
+
+
+//get translation
+MATCH (a:Dutch {word:'Moeder'}) -[:TRANSLATES]->(b:Hungarian) RETURN b
+
+//get dictionary
+MATCH (a:Dutch) -[:TRANSLATES]->(b:Hungarian) RETURN a,b
+
+//get synonyms
+MATCH (a:Dutch) -[:SYMOMYM]->(b:Dutch) RETURN a,b
